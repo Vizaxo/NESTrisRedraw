@@ -1,3 +1,5 @@
 .stack-work/
 tetris.cabal
 *~
+__pycache__/
+*.py[cod]
