@@ -11,3 +11,5 @@ dependencies:
 library:
   source-dirs: src
 
+default-extensions:
+- RecordWildCards
