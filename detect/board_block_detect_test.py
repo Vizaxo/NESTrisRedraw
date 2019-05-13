@@ -11,4 +11,4 @@ colour_3 = np.array((244,254,241))
 colours = [black_rgb, colour_1, colour_2, colour_3]
 # gets path to home directory of NESTrisRedraw
 main_directory_path = os.path.dirname(os.path.dirname(__file__))
-BoardPrint(BlockLocations(main_directory_path + "\\resources\\images\\tetris.png", colours))
+BoardPrint(BlockLocations(os.path.join(main_directory_path, "resources", "images", "tetris.png"), colours))
