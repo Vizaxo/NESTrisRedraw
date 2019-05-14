@@ -1,7 +1,6 @@
 {-# LANGUAGE AllowAmbiguousTypes #-}
 module Utils where
 
-import Data.List
 import Data.Proxy
 import GHC.TypeNats
 

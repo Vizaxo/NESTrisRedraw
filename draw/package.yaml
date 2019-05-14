@@ -19,3 +19,4 @@ default-extensions:
 - RecordWildCards
 - ScopedTypeVariables
 - TypeApplications
+- ViewPatterns

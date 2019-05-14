@@ -36,10 +36,13 @@ data Palette = Palette
   , colourB :: P.PixelRGBA8
   }
 
+level18Palette = Palette redPix bluePix
+
 whitePix, blackPix :: P.PixelRGBA8
 whitePix = P.PixelRGBA8 0xff 0xff 0xff 0xff
 blackPix = P.PixelRGBA8 0x00 0x00 0x00 0xff
-redPix = P.PixelRGBA8 0xff 0x00 0x00 0xff
+redPix = P.PixelRGBA8 0xd8 0x28 0x00 0xff
+bluePix = P.PixelRGBA8 0x20 0x38 0xec 0xff
 
 type BlockImage = Image 8 8
 
@@ -67,13 +70,21 @@ blackBlock = Image $ V.replicate (V.replicate blackPix)
 
 blockToImage :: Palette -> Block -> BlockImage
 blockToImage Palette{..} (Block Nothing) = blackBlock
-blockToImage Palette{..} (Block (Just White)) = whiteBlock colourA
+blockToImage Palette{..} (Block (Just White)) = whiteBlock colourB
 blockToImage Palette{..} (Block (Just ColourA)) = colourBlock colourA
 blockToImage Palette{..} (Block (Just ColourB)) = colourBlock colourB
 
 makeImage :: forall x y. (KnownNat x, KnownNat y) => Image x y -> P.Image P.PixelRGBA8
 makeImage img = P.generateImage pixelRenderer (natValue @x) (natValue @y)
    where pixelRenderer x y = pixelAt img (finite (fromIntegral x)) (finite (fromIntegral y))
+
+displayBoard :: Board -> Palette -> P.Image P.PixelRGBA8
+displayBoard board palette = P.generateImage f (10*8 + 1) (20*8 + 1) where
+  f :: Int -> Int -> P.PixelRGBA8
+  f 0 y = blackPix
+  f x 0 = blackPix
+  f (subtract 1 -> x) (subtract 1 -> y) = pixelAt (blockToImage palette block) (finite $ toInteger x `mod` 8) (finite $ toInteger y `mod` 8) where
+    block = blockAt board (finite $ toInteger x `div` 8) (finite $ toInteger y `div` 8)
 
 writeImage :: forall x y. (KnownNat x, KnownNat y) => String -> Image x y -> IO ()
 writeImage path img = P.writePng path (makeImage img)
