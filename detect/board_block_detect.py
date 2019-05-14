@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-from timeit import default_timer as timer
 
 # Function to calculate a simple difference metric between two GBR tuples,
 # using the sum of absolute differences between each set of GBR values.
