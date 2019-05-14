@@ -16,11 +16,11 @@ blankLine = Line blankBlock blankBlock blankBlock blankBlock blankBlock
 iFlat :: Piece
 iFlat = Piece blankLine blankLine i blankLine blankLine where
   i = Line filled filled filled filled blankBlock
-  filled = Block (Just Mid)
+  filled = Block (Just White)
 
 iTall :: Piece
 iTall = Piece iLine iLine iLine iLine blankLine where
-  iLine = Line blankBlock blankBlock (Block (Just Mid)) blankBlock blankBlock
+  iLine = Line blankBlock blankBlock (Block (Just White)) blankBlock blankBlock
 
 i :: PieceDescription
 i = PieceDescription iFlat iTall iFlat iTall

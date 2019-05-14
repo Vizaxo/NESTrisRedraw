@@ -2,17 +2,17 @@ module Board where
 
 import Block
 
+import Data.Vector.Sized as V
+
 -- 10-wide lines
-data Line = Line Block Block Block Block Block Block Block Block Block Block
+data Line = Line (Vector 10 Block)
   deriving Show
 
-blankLine = Line blankBlock blankBlock blankBlock blankBlock blankBlock blankBlock blankBlock blankBlock blankBlock blankBlock
+blankLine = Line (V.replicate blankBlock)
 
 -- 20-high board
 data Board
-  = Board
-  Line Line Line Line Line Line Line Line Line Line
-  Line Line Line Line Line Line Line Line Line Line
+  = Board (Vector 20 Line)
   deriving Show
 
-blankBoard = Board blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine blankLine
+blankBoard = Board (V.replicate blankLine)

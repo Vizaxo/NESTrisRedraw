@@ -1,6 +1,6 @@
 module Block where
 
-data Colour = Dark | Mid | Light
+data Colour = White | ColourA | ColourB
   deriving Show
 
 data Block = Block (Maybe Colour)
