@@ -17,3 +17,4 @@ image_path = os.path.join(main_directory_path, "resources", "images", "tetris.pn
 image_matrix = cv2.imread(image_path)
 # Tags all of the blocks in the image, then prints the output.
 BoardPrint(BlockLocations(image_matrix, colours))
+

@@ -8,18 +8,14 @@ def DifferenceOfTuple(t1, t2):
     diff = abs(t1[0] - t2[0]) + abs(t1[1] - t2[1]) + abs(t1[2] - t2[2])
     return diff
 
-# Function for printing a tagged board 
+# Function for printing a tagged board - takes a board string and prints it line by line
 def BoardPrint(board):
-    for x in board:
-        for y in range(len(x)):
-            if x[y] == 0:
-                x[y] = " "
-            else:
-                x[y] = str(x[y])
-        print(" ".join(x))
+    for x in board.split(","):
+        no_background = x.replace("0", " ")
+        print(" ".join(no_background))
 
 # Function that takes in an image matrix of a tetris board, and returns a
-# matrix of integers representing that board. Each integer represents which
+# string representation of the board. Each digit in the string represents which
 # 'colour group' a block belongs to. 
 def BlockLocations(cv_image_matrix, colours):
     # Generate a matrix of a blank, standard tetris board (10 x 20 blocks)
@@ -54,8 +50,9 @@ def BlockLocations(cv_image_matrix, colours):
             # Takes the index of the closest colour of the current block, 
             # tagging the 'colour group' it belongs to. 
             differences = [DifferenceOfTuple(mean_gbr, x) for x in colours]
-            board[y][x] = differences.index(min(differences))
+            board[y][x] = str(differences.index(min(differences)))
 
-    return board
+    board_string = ','.join([''.join(x) for x in board])
+    return board_string
 
-        
+ 
