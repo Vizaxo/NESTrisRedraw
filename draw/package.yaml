@@ -2,15 +2,20 @@ name:                tetris
 version:             0.1.0.0
 license:             GPLv3
 
-extra-source-files:
-- README.md
-
 dependencies:
 - base >= 4.7 && < 5
 - vector-sized
+- JuicyPixels
+- finite-typelits
 
 library:
   source-dirs: src
 
 default-extensions:
+- DataKinds
+- KindSignatures
+- OverloadedLists
+- RankNTypes
 - RecordWildCards
+- ScopedTypeVariables
+- TypeApplications
