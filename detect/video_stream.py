@@ -12,7 +12,7 @@ else:
     FFMPEG = "ffmpeg"
 
 cmd = [ FFMPEG,
-            '-i', '../resources/videos/tetris.ts',
+            '-i', '../resources/videos/tetris.ts', # The video input
             '-filter_complex', "[0]field=top[t];[0]field=bottom[b];[t][b]interleave",
             '-r', '50',
             '-f', 'image2pipe',
@@ -35,7 +35,7 @@ for i in range (10000):
     if(image.size != 0):
         image = image.reshape((288,720,3))
         cropped_image = image[68:230, 278:482]
-        bbd.BoardPrint(bbd.BlockLocations(cropped_image, colours))
+        print(bbd.BlockLocations(cropped_image, colours))
 
     # loop at 50fps
     time.sleep(max(1./50 - (time.time() - start), 0))

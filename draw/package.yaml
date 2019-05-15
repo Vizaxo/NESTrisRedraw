@@ -7,9 +7,21 @@ dependencies:
 - vector-sized
 - JuicyPixels
 - finite-typelits
+- process
+- mtl
+- time
 
 library:
   source-dirs: src
+
+executables:
+  stream:
+    source-dirs: .
+    main: Main.hs
+    ghc-options:
+    - -O2
+    dependencies:
+    - tetris
 
 default-extensions:
 - DataKinds
